@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, {useState, useEffect} from "react"
 import styled from "styled-components"
 import colors from "styles/colors"
 import media from "styles/media"
@@ -7,10 +7,10 @@ import CenteredImgLarge from "../images/CenteredImgLarge.webp"
 import CenteredImgMobile from "../images/CenteredImgMobile.webp"
 import CenteredImgTablet from "../images/CenteredImgTablet.webp"
 import useMedia from "../utils/useMedia"
-import { content } from "./content/simpleCenteredContent"
+import {content} from "./content/simpleCenteredContent"
 import commonArrowLink from "./svg Assets/commonArrowLink.svg"
 import commonArrowOrange from "./svg Assets/commonArrowOrange.svg"
-import { gsap } from "gsap"
+import {gsap} from "gsap"
 
 const SimpleCentered = () => {
   const [withImage, setWithImage] = useState(null)
@@ -60,11 +60,11 @@ const SimpleCentered = () => {
       ),
       maxAllowedX + backgroundCenterX
     )
-    gsap.to("#bgBlack", { x: constrainedX - backgroundCenterX })
+    gsap.to("#bgBlack", {x: constrainedX - backgroundCenterX})
   }
 
   const handleMouseLeave = () => {
-    gsap.to("#bgBlack", { x: 50 })
+    gsap.to("#bgBlack", {x: 50})
   }
 
   const statCards = content.stats.options.map((card, index) => {
@@ -78,14 +78,14 @@ const SimpleCentered = () => {
   })
   useEffect(() => {
     const tl = gsap.timeline()
-    tl.to("#bgBlack", { x: 50 })
+    tl.to("#bgBlack", {x: 50})
 
     if (shouldScroll) {
       scrollToButtons()
       setShouldScroll(false)
     }
-  }, [withImage, statisticCards, shouldScroll]);
-  
+  }, [withImage, statisticCards, shouldScroll])
+
   return (
     <Wrapper>
       <HeaderDiv>
@@ -96,8 +96,7 @@ const SimpleCentered = () => {
         <Body>{content.body}</Body>
         <Link
           color={!statisticCards ? `${colors.primaryOrange}` : "#838587"}
-          $fill={!statisticCards}
-        >
+          $fill={!statisticCards}>
           {content.link}
         </Link>
       </BodyDiv>
@@ -105,13 +104,11 @@ const SimpleCentered = () => {
       {statisticCards && <StatsWrapperDiv>{statCards}</StatsWrapperDiv>}
       <ClickableWrapper
         onMouseMove={e => handleMouseMove(e)}
-        onMouseLeave={e => handleMouseLeave(e)}
-      >
+        onMouseLeave={e => handleMouseLeave(e)}>
         <Controller>
           <Button
             $active={!withImage ? !statisticCards : undefined}
-            onClick={() => handleClick("text")}
-          >
+            onClick={() => handleClick("text")}>
             Text Only
           </Button>
           <Button $active={withImage} onClick={() => handleClick("img")}>
@@ -418,3 +415,4 @@ const Wrapper = styled.div`
     padding: 9.346vw 9.346vw 9.346vw 9.346vw;
   }
 `
+
