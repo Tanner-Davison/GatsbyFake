@@ -1,42 +1,29 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useEffect} from "react"
 import styled from "styled-components"
 import {autoSliderData} from "../components/content/AutoSliderData"
 import colors from "../styles/colors"
 import media from "../styles/media"
 import {gsap} from "gsap"
 import text from "../styles/text"
-import {
-  CarouselButtonLeft,
-  CarouselButtonRight,
-  GlobalLinkButton,
-} from "./buttons/Buttons"
 
 const AutoSlider = ({scrollto}) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [arrayValue, setArrayValue] = useState([])
-  const [restart, setRestart] = useState(false)
-  const [width, setWidth] = useState(0 + "%")
-  const [width2, setWidth2] = useState(0 + "%")
-  const [width3, setWidth3] = useState(0 + "%")
-  const viewboxRef = useRef(null)
-  let cardCount = 0
-  let transCount = 0
-
   const startGsap = () => {
     let loadSpeed = 6
     let slideSpeed = 2
-    const targetDiv = viewboxRef.current.querySelectorAll(`.cardwrapper`)
+
+    const targetDiv = document.querySelectorAll(`.boxself`)
+    const toEach = document.querySelectorAll('.boxself')
     const tl = gsap.timeline({
       paused: false,
     })
-    
     tl.from(['.growme.num1','.growme.num2','growme.numb3'], {width:0})
     tl.to(".growme.num1", {width: 100, duration: `${loadSpeed}`})
-    tl.to(targetDiv, {xPercent: -335, duration: `${slideSpeed}`, ease: "back.inOut"},'-=3.5')
-     tl.to(".growme.num2", {width: 100, duration: `${loadSpeed}`})
+    toEach.forEach((item)=>{
+      return tl.to(item, {xPercent: -335, duration: `${slideSpeed}`,ease: "back.inOut"},'-=3.5')})
+     tl.to(".growme.num2", {width: 100, duration: `${loadSpeed}`},"-=1.5")
     tl.to(targetDiv, {xPercent: -670, duration: `${slideSpeed}`, ease: "back.inOut"}, "-=3.5")
-    tl.to(".growme.num3", {width: 100, duration: `${loadSpeed}`})
-    tl.to(targetDiv, {xPercent: 0, duration:`${slideSpeed}`, ease: "back.inOut"}, "-=3.5")
+    tl.to(".growme.num3", {width: 100, duration: `${loadSpeed}`},"-=1.5")
+    tl.to(targetDiv, {xPercent: 0, duration:`${slideSpeed+1}`, ease: "back.inOut"},'-=3')
     tl.repeat(-1);
     let boxself = document.querySelectorAll('.boxself')
     boxself.forEach(item=> item.addEventListener('click',()=>{
@@ -72,7 +59,7 @@ const AutoSlider = ({scrollto}) => {
   return (
     <Wrapper>
       <BoxContainer>
-        <ViewBox ref={viewboxRef}>
+        <ViewBox>
           <CardRelativeWrapper className={"cardwrapper"}>
             {autoSliderData.map(runCards)}
           </CardRelativeWrapper>
@@ -84,14 +71,12 @@ const AutoSlider = ({scrollto}) => {
             className={"growme num1"}
           />
         </ButtonCustom>
-        <ButtonCustom $width={width2}>
+        <ButtonCustom >
           <ButtonGrowth
             className={"growme num2"}
-            $restart={restart}
-            $width={width2}
           />
         </ButtonCustom>
-        <ButtonCustom $width={width3}>
+        <ButtonCustom >
           <ButtonGrowth className={`growme num3`} />
         </ButtonCustom>
       </Controls>
