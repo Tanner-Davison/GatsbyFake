@@ -78,3 +78,7 @@ export const autoSliderData = [
   },
 
 ]
+
+export const SliderHeader = {
+  headline: "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor",
+}
