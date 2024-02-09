@@ -45,9 +45,9 @@ const AutoSlider = ({scrollto}) => {
             {
               xPercent: count === 1 ? -106.8 : -106.8 * count,
               duration: 1.5,
-              ease: "expo.inOut",
+              ease: "back.inOut",
             },
-            "-=2.5"
+            "-=3.2"
           )
           
       }
