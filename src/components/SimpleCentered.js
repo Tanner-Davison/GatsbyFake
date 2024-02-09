@@ -28,7 +28,7 @@ const SimpleCentered = () => {
 
     elementToScroll.scrollIntoView({
       behavior: "smooth",
-      block: "start",
+      block: "center",
       inline: "center",
     })
   }
