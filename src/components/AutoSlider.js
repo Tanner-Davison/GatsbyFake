@@ -1,4 +1,4 @@
-import React, {useEffect, useState,useRef} from "react"
+import React, {useEffect, useState, useRef} from "react"
 import styled from "styled-components"
 import {autoSliderData} from "../components/content/AutoSliderData"
 import colors from "../styles/colors"
@@ -11,49 +11,39 @@ const AutoSlider = ({scrollto}) => {
   let windowMobile = window.innerWidth <= 481
 
   const [counter, setCounter] = useState(1)
-  // let ref = useRef(0)
-  // const startInterval =()=> setInterval(()=>{
-    
-  //   setCounter(prev=> prev+1<10 ? prev+1 : 0);
-   
-  // },4000)
+
   const startMobileGsap = () => {
     let mobileLoaders = document.querySelectorAll(".growme")
     let mobileTargets = document.querySelectorAll(".boxself")
-    let length = mobileLoaders.length
     const tlM = gsap.timeline({
       paused: false,
       repeat: -1,
     })
-    console.log(mobileTargets.length)
-    // startInterval();
     for (let i = 1; i < mobileTargets.length + 1; i++) {
       let count = i
-      console.log(count)
       if (count === mobileTargets.length) {
-        tlM
-          .to(".boxself", {xPercent: 0, duration: 1})
+        tlM.to(".boxself", {xPercent: 0, duration: 1})
       } else {
-        tlM.to(".growme.num1", {width:100, duration: 5, ease:'power1.easeInOut'})
-        tlM.to(".growme.num1", { width: 0, duration:0})
+        tlM.to(".growme.num1", {
+          width: 100,
+          duration: 5,
+          ease: "power1.easeInOut",
+        })
+        tlM.to(".growme.num1", {width: 0, duration: 0})
         tlM.add(function () {
           setCounter(prev => (prev < 9 ? prev + 1 : 0))
-        },'-=2.2')
-        tlM
-          .to(
-            ".boxself",
-            {
-              xPercent: count === 1 ? -106.8 : -106.8 * count,
-              duration: 1.5,
-              ease: "back.inOut",
-            },
-            "-=3.2"
-          )
-          
+        }, "-=2.2")
+        tlM.to(
+          ".boxself",
+          {
+            xPercent: count === 1 ? -106.8 : -106.8 * count,
+            duration: 1.5,
+            ease: "back.inOut",
+          },
+          "-=3.2"
+        )
       }
-      
     }
-    // return () => clearInterval(startInterval)
   }
 
   const startGsap = () => {
@@ -88,9 +78,10 @@ const AutoSlider = ({scrollto}) => {
     )
     tl.to(
       targetDiv,
-      {xPercent: 0, duration: `${slideSpeed}`, ease: "back.inOut"},
-      "-=4"
+      {xPercent: 0, duration: `${slideSpeed+1}`, ease: "back.inOut"},
+      "-=3"
     )
+    tl.to('.growme',{width:0, duration:0})
   }
   useEffect(() => {
     const target = document.getElementById(`cardwrapper`)
@@ -151,8 +142,8 @@ const Counter = styled.p`
   position: relative;
   ${text.bodyM}
   padding-top:0.903vw;
-  margin:unset;
-  color:white;
+  margin: unset;
+  color: white;
 `
 const ButtonGrowth = styled.div`
   position: relative;
@@ -171,8 +162,6 @@ const ButtonGrowth = styled.div`
   }
 
   ${media.mobile} {
-    
-    
   }
 `
 const ButtonCustom = styled.div`
@@ -198,7 +187,7 @@ const ButtonCustom = styled.div`
   }
 `
 const Controls = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
