@@ -24,7 +24,7 @@ const StickyScroll = () => {
         duration: 0.5,
         scrollTrigger: {
           trigger: item,
-          start: "50%",
+          start: "25%",
           onEnter: () => {
             gsap.to(item, {
               opacity: 1,
@@ -130,7 +130,7 @@ const ListItemDiv = styled.div`
   }
 
   ${media.tablet} {
-    width: 51.563vw;
+    width: 46.023vw;
     padding: 18px;
   }
 
@@ -143,14 +143,15 @@ const LongListDiv = styled.div`
   flex-direction: column;
   width: 46.667vw;
   height: 100%;
+  overflow: hidden;
   ${media.fullWidth} {
     width: 672px;
   }
 
   ${media.tablet} {
-    width: 100%;
+    width: 49.563vw;
     height: 100%;
-    padding: 1.758vw 4.102vw 1.758vw 5.859vw;
+    padding: 1.758vw 4.102vw 1.758vw 3.859vw;
   }
 
   ${media.mobile} {
