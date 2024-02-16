@@ -97,9 +97,15 @@ const StyledCheck = styled.img`
   }
 
   ${media.tablet} {
+    width:4.297vw;
+    height: 4.297vw;
+    left:-6.445vw;
   }
 
   ${media.mobile} {
+    width:7.477vw;
+    height: 7.477vw;
+    left: -9vw;
   }
 `
 const ListItemDiv = styled.div`
@@ -114,9 +120,13 @@ const ListItemDiv = styled.div`
   }
 
   ${media.tablet} {
+    width:51.563vw;
+    padding:18px;
   }
 
   ${media.mobile} {
+    width:100%;
+    
   }
 `
 const LongListDiv = styled.div`
@@ -129,9 +139,15 @@ const LongListDiv = styled.div`
   }
 
   ${media.tablet} {
+    width: 100%;
+    height: 100%;
+    padding: 1.758vw 4.102vw 1.758vw 5.859vw;
   }
 
   ${media.mobile} {
+    width: 100%;
+    height: 100%;
+    padding: 4.206vw 6.075vw 4.206vw 9.346vw;
   }
 `
 const StableBody = styled.p`
@@ -160,9 +176,18 @@ const StableContentDiv = styled.div`
   }
 
   ${media.tablet} {
+   
+    height: 26.994vw;
+    gap: 1.953vw;
+    top:5vw;
+    
+
   }
 
   ${media.mobile} {
+    width: 100%;
+    height: 100%;
+    gap:1.869vw;
   }
 `
 const ProgressBarSlide = styled.div`
@@ -204,9 +229,13 @@ const StableBodyDiv = styled.div`
   }
 
   ${media.tablet} {
+    width:43.75vw;
+    height: 100%;
   }
 
   ${media.mobile} {
+    width:87.85vw;
+    height:100%;
   }
 `
 const AllWrapperDiv = styled.div`
@@ -214,6 +243,10 @@ const AllWrapperDiv = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  
+  ${media.mobile} {
+  flex-direction:column;
+  }
 `
 const Wrapper = styled.div`
   position: relative;
@@ -225,9 +258,5 @@ const Wrapper = styled.div`
     padding: 80px 40px 80px 107px;
   }
 
-  ${media.tablet} {
-  }
-
-  ${media.mobile} {
-  }
 `
+
