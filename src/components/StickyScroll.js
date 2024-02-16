@@ -5,42 +5,52 @@ import colors from "styles/colors"
 import text from "styles/text"
 import CheckCircle from "../images/CheckCircle.webp"
 import {data} from "./content/StickyScrollContent"
-import gsap from 'gsap';
+import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 
-
 const StickyScroll = () => {
   const listItems = data[1].list
-  
-    useEffect(() => {
-      const items = gsap.utils.toArray(".listItem")
-      const disapearItems = items.slice(3)
 
-      disapearItems.forEach(item => {
-        gsap.to(item, {
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: item,
-            start: "25% 45%",
-          },
-        })
-      })
+  useEffect(() => {
+    const items = gsap.utils.toArray(".listItem")
+    const disapearItems = items.slice(3)
+    gsap.set(disapearItems, {xPercent: 200})
 
-      gsap.to(".invisible", {
-        height: "70%",
+    disapearItems.forEach((item, index) => {
+      gsap.to(item, {
+        opacity: 1,
+        xPercent: 0,
+        duration: 0.5,
         scrollTrigger: {
-          trigger: ".wrapper",
-          start: "top top",
-          scrub: true,
-          // markers: true
+          trigger: item,
+          start: "50%",
+          onEnter: () => {
+            gsap.to(item, {
+              opacity: 1,
+              xPercent: 0,
+              duration: 1,
+            })
+          },
+          toggleActions: `play none none reset`,
         },
+        stagger: 0.2 * index, // Adjust the stagger value as needed
       })
-    }, [])
-  const runList = listItems.map((listItem, index )=> {
+    })
+    
+    gsap.to(".invisible", {
+      height: "70%",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top top",
+        scrub: true,
+        // markers: true
+      },
+    })
+  }, [])
+  const runList = listItems.map((listItem, index) => {
     return (
-      <ListItemDiv className={'listItem'} $index={index}>
+      <ListItemDiv className={"listItem"} $index={index}>
         <ListHeadline>
           <StyledCheck src={CheckCircle} />
           {listItem.headline}
@@ -51,11 +61,11 @@ const StickyScroll = () => {
   })
   return (
     <Wrapper>
-      <AllWrapperDiv className={'wrapper'}>
+      <AllWrapperDiv className={"wrapper"}>
         <StableBodyDiv>
           <StableContentDiv>
             <ProgressBar>
-                <InvisibleProgress className={'invisible'}/>
+              <InvisibleProgress className={"invisible"} />
               <ProgressBarSlide />
             </ProgressBar>
             <StableHeader>
@@ -97,13 +107,13 @@ const StyledCheck = styled.img`
   }
 
   ${media.tablet} {
-    width:4.297vw;
+    width: 4.297vw;
     height: 4.297vw;
-    left:-6.445vw;
+    left: -6.445vw;
   }
 
   ${media.mobile} {
-    width:7.477vw;
+    width: 7.477vw;
     height: 7.477vw;
     left: -9vw;
   }
@@ -112,7 +122,7 @@ const ListItemDiv = styled.div`
   display: flex;
   width: 44.167vw;
   padding: 1.25vw 5vw 1.25vw 4.167vw;
-  opacity: ${props => (props.$index > 2 ? "0" : "1")};
+  /* opacity: ${props => (props.$index > 2 ? "0" : "1")}; */
 
   ${media.fullWidth} {
     width: 636px;
@@ -120,13 +130,12 @@ const ListItemDiv = styled.div`
   }
 
   ${media.tablet} {
-    width:51.563vw;
-    padding:18px;
+    width: 51.563vw;
+    padding: 18px;
   }
 
   ${media.mobile} {
-    width:100%;
-    
+    width: 100%;
   }
 `
 const LongListDiv = styled.div`
@@ -164,7 +173,7 @@ const StableContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   color: black;
-  top: 5vw;
+  top: 9vw;
   height: 26.944vw;
   gap: 1.667vw;
   padding: 0vw 4.583vw 0vw 2.847vw;
@@ -176,18 +185,15 @@ const StableContentDiv = styled.div`
   }
 
   ${media.tablet} {
-   
     height: 26.994vw;
     gap: 1.953vw;
-    top:5vw;
-    
-
+    top: 5vw;
   }
 
   ${media.mobile} {
     width: 100%;
     height: 100%;
-    gap:1.869vw;
+    gap: 1.869vw;
   }
 `
 const ProgressBarSlide = styled.div`
@@ -199,9 +205,9 @@ const ProgressBarSlide = styled.div`
     width: 3px;
   }
 `
-  const InvisibleProgress = styled.div`
-    height: 0%;
-  `
+const InvisibleProgress = styled.div`
+  height: 0%;
+`
 const ProgressBar = styled.div`
   display: flex;
   flex-direction: column;
@@ -213,7 +219,7 @@ const ProgressBar = styled.div`
   height: 26.944vw;
 
   ${media.fullWidth} {
-    top:0px;
+    top: 0px;
     width: 2px;
     left: -2px;
     height: 418px;
@@ -229,13 +235,13 @@ const StableBodyDiv = styled.div`
   }
 
   ${media.tablet} {
-    width:43.75vw;
+    width: 43.75vw;
     height: 100%;
   }
 
   ${media.mobile} {
-    width:87.85vw;
-    height:100%;
+    width: 87.85vw;
+    height: 100%;
   }
 `
 const AllWrapperDiv = styled.div`
@@ -243,9 +249,9 @@ const AllWrapperDiv = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  
+
   ${media.mobile} {
-  flex-direction:column;
+    flex-direction: column;
   }
 `
 const Wrapper = styled.div`
@@ -257,6 +263,4 @@ const Wrapper = styled.div`
   ${media.fullWidth} {
     padding: 80px 40px 80px 107px;
   }
-
 `
-
