@@ -156,8 +156,13 @@ const ContentImg = styled.img`
   }
 
   ${media.tablet} {
+<<<<<<< HEAD
     width: ${props => (props.$icon ? "47.754vw" : "40.313vw")};
     height: ${props => (props.$icon ? "47.754vw" : "23.441vw")};
+=======
+    width: ${props => (props.$icon ? "45.754vw" : "45.313vw")};
+    height: ${props => (props.$icon ? "24.441vw" : "24.441vw")};
+>>>>>>> 948945e2c6b61e536eadee8bb8d868bdaeadf47a
   }
 
   ${media.mobile} {
@@ -407,3 +412,4 @@ const Wrapper = styled.div`
     background-position: top right;
   }
 `
+

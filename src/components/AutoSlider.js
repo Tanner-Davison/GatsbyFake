@@ -358,7 +358,7 @@ const Wrapper = styled.div`
   }
 
   ${media.tablet} {
-    padding: 60px 0vw;
+    padding: 5.859vw 1.758vw;
   }
 
   ${media.mobile} {
