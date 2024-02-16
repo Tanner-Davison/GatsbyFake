@@ -125,7 +125,7 @@ const ImageAbsolute = styled.div`
   background-repeat: no-repeat;
   background-position: right;
   width: 42.847vw;
-  height: 29.583vw;
+  height: 31.583vw;
   z-index: 1;
   animation: ${rotateAnimation} 4s infinite ease-in-out;
   ${media.fullWidth} {
@@ -156,8 +156,8 @@ const ContentImg = styled.img`
   }
 
   ${media.tablet} {
-    width: ${props => (props.$icon ? "47.754vw" : "45.313vw")};
-    height: ${props => (props.$icon ? "47.754vw" : "27.441vw")};
+    width: ${props => (props.$icon ? "47.754vw" : "40.313vw")};
+    height: ${props => (props.$icon ? "47.754vw" : "23.441vw")};
   }
 
   ${media.mobile} {
