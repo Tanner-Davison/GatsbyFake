@@ -47,7 +47,7 @@ const StickyScroll = () => {
         trigger: ".wrapper",
         start: "top top",
         scrub: true,
-        // markers: true
+        markers: true
       },
     })
   }, [])
