@@ -19,9 +19,6 @@ const StickyScroll = () => {
 
     disapearItems.forEach((item, index) => {
       gsap.to(item, {
-        opacity: 1,
-        xPercent: 0,
-        duration: 0.5,
         scrollTrigger: {
           trigger: item,
           start: "25%",
@@ -29,15 +26,21 @@ const StickyScroll = () => {
             gsap.to(item, {
               opacity: 1,
               xPercent: 0,
+              duration: 0.5,
+            })
+          },
+          onEnterBack: () => {
+            gsap.to(item, {
+              xPercent: 200,
               duration: 1,
             })
           },
-          toggleActions: `play none none reset`,
+          toggleActions: `play reverse none reset`,
         },
-        stagger: 0.2 * index, // Adjust the stagger value as needed
+        stagger: 0.2 * index,
       })
     })
-    
+
     gsap.to(".invisible", {
       height: "70%",
       scrollTrigger: {
@@ -265,3 +268,4 @@ const Wrapper = styled.div`
     padding: 80px 40px 80px 107px;
   }
 `
+
