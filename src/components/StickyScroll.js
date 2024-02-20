@@ -15,15 +15,20 @@ const StickyScroll = () => {
   useEffect(() => {
     const items = gsap.utils.toArray(".listItem")
     const disapearItems = items.slice(3)
+    const tl = gsap.timeline();
+    
     gsap.set(disapearItems, {xPercent: 200})
 
     disapearItems.forEach((item, index) => {
       gsap.to(item, {
+        opacity: 1,
+        xPercent: 0,
+        duration: 0.5,
         scrollTrigger: {
           trigger: item,
           start: "25%",
           onEnter: () => {
-            gsap.to(item, {
+            gsap.to(item, { 
               opacity: 1,
               xPercent: 0,
               duration: 0.5,
@@ -47,7 +52,7 @@ const StickyScroll = () => {
         trigger: ".wrapper",
         start: "top top",
         scrub: true,
-        markers: true
+        // markers: true
       },
     })
   }, [])
@@ -125,7 +130,7 @@ const ListItemDiv = styled.div`
   display: flex;
   width: 44.167vw;
   padding: 1.25vw 5vw 1.25vw 4.167vw;
-  /* opacity: ${props => (props.$index > 2 ? "0" : "1")}; */
+
 
   ${media.fullWidth} {
     width: 636px;

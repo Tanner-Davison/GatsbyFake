@@ -16,6 +16,7 @@ import PullQuote from "./PullQuote";
 import SimpleCentered from "./SimpleCentered";
 import AutoSlider from './AutoSlider';
 import StickyScroll from "./StickyScroll";
+import SwissList from "./SwissList";
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -34,6 +35,7 @@ const Layout = ({ children }) => {
     <SideQuote/>
     <StickyScroll/>
     <PullQuote/>
+    <SwissList/>
     <SimpleCentered/>
     <AutoSlider/>
    <Footer/>
