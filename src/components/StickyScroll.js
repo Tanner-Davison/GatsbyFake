@@ -40,7 +40,7 @@ const StickyScroll = () => {
               duration: 1,
             })
           },
-          toggleActions: `play reverse none reset`,
+          // toggleActions: `play reverse none reset`,
         },
         stagger: 0.2 * index,
       })
