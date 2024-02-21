@@ -15,8 +15,8 @@ const StickyScroll = () => {
   useEffect(() => {
     const items = gsap.utils.toArray(".listItem")
     const disapearItems = items.slice(3)
-    const tl = gsap.timeline();
-    
+    const tl = gsap.timeline()
+
     gsap.set(disapearItems, {xPercent: 200})
 
     disapearItems.forEach((item, index) => {
@@ -28,7 +28,7 @@ const StickyScroll = () => {
           trigger: item,
           start: "25%",
           onEnter: () => {
-            gsap.to(item, { 
+            gsap.to(item, {
               opacity: 1,
               xPercent: 0,
               duration: 0.5,
@@ -131,7 +131,6 @@ const ListItemDiv = styled.div`
   width: 44.167vw;
   padding: 1.25vw 5vw 1.25vw 4.167vw;
 
-
   ${media.fullWidth} {
     width: 636px;
     padding: 18px 72px 18px 60px;
@@ -152,6 +151,7 @@ const LongListDiv = styled.div`
   width: 46.667vw;
   height: 100%;
   overflow: hidden;
+  scroll-behavior: smooth;
   ${media.fullWidth} {
     width: 672px;
   }
@@ -218,6 +218,7 @@ const InvisibleProgress = styled.div`
   height: 0%;
 `
 const ProgressBar = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -235,10 +236,12 @@ const ProgressBar = styled.div`
   }
 `
 const StableBodyDiv = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 43.125vw;
   height: 100%;
+
   ${media.fullWidth} {
     width: 621px;
   }
@@ -254,6 +257,7 @@ const StableBodyDiv = styled.div`
   }
 `
 const AllWrapperDiv = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -273,4 +277,3 @@ const Wrapper = styled.div`
     padding: 80px 40px 80px 107px;
   }
 `
-
