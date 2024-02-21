@@ -6,40 +6,41 @@ import text from 'styles/text';
 import {data} from './content/SwissListContent';
 import gsap from 'gsap';
 import ScrollTrigger from "gsap/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger);
+import ScrollSmoother from "gsap/ScrollSmoother"
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const SwissList = () => {
     const {bodyData} = data;
     console.log(bodyData);
 
     useEffect(()=>{
-        const tl = gsap.timeline({
-            paused: false,
-        });
-       const loader = gsap.from(".lineLoader", {
-          scrollTrigger:'.textBody', 
-          scaleX: 0,
-          duration: .8,
-          transformOrigin: "left center",
-          ease: "none",
-          stagger: .8,
-          toggleActions: 'play none none reset',
-          marker:true,
-        })
-        tl.add(loader)
-        const Body = gsap.fromTo(
-          ".textBody",
-          {
-            opacity: 0,
-          },
-          {
-            opacity: 1,
-            duration: 2,
-            stagger: .8,
-          }
-        )
-        tl.add(Body);
-        
+     
+      const tl = gsap.timeline({
+        paused: false,
+      })
+      const loader = gsap.from(".lineLoader", {
+        scrollTrigger: ".textBody",
+        scaleX: 0,
+        duration: 0.8,
+        transformOrigin: "left center",
+        ease: "none",
+        stagger: 0.8,
+        toggleActions: "play none none reset",
+        marker: true,
+      })
+      tl.add(loader)
+      const Body = gsap.fromTo(
+        ".textBody",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 2,
+          stagger: 0.8,
+        }
+      )
+      tl.add(Body)
     },[])
     const RunBodyData = bodyData.map((bodyItem, index)=>{
         return (

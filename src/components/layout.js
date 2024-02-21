@@ -7,7 +7,7 @@
 
 import * as React from "react"
 // import { useStaticQuery, graphql } from "gatsby"
-
+import {useEffect} from 'react'
 import HeroHeader from "./HeroHeader"
 import "./layout.css";
 import Footer from "./GlobalComponents/Footer";
@@ -17,7 +17,8 @@ import SimpleCentered from "./SimpleCentered";
 import AutoSlider from './AutoSlider';
 import StickyScroll from "./StickyScroll";
 import SwissList from "./SwissList";
-
+import gsap from 'gsap'
+import ScrollSmoother from 'gsap/ScrollSmoother'
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
@@ -28,7 +29,12 @@ const Layout = ({ children }) => {
   //     }
   //   }
   // `)
-
+useEffect(()=>{
+   ScrollSmoother.create({
+     smooth: 1,
+     effects: true,
+   })
+},[])
   return (
     <>
     <HeroHeader/>

@@ -16,7 +16,7 @@
     "gatsby-plugin-svgr": "^3.0.0-beta.0",
     "gatsby-source-filesystem": "^5.8.0",
     "gatsby-transformer-sharp": "^5.8.0",
-    "gsap": "^3.12.5",
+    "gsap": "npm:@gsap/business@^3.12.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.8"
