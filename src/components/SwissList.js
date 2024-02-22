@@ -89,7 +89,7 @@ const LoadingLine = styled.span`
   background-color: #191d1e;
   width: 100%;
   max-width: 55.556vw;
-  height: 0.139vw;
+  height: 0.139vw !important;
   margin: 0 0 0.694vw 0;
   border-radius: 3.472vw;
   ${media.fullWidth} {
@@ -100,6 +100,7 @@ const LoadingLine = styled.span`
   }
 
   ${media.tablet} {
+    height: 0.139vw;
   }
 
   ${media.mobile} {
@@ -124,6 +125,8 @@ const BodyDiv = styled.div`
   }
 
   ${media.tablet} {
+  width:21.875vw;
+    padding: 12px 12px 24px 0px;
   }
 
   ${media.mobile} {
@@ -138,6 +141,7 @@ const BodySectionWrapper = styled.div`
   }
 
   ${media.tablet} {
+    width:110.625vw;
   }
 
   ${media.mobile} {
@@ -161,6 +165,8 @@ const Wrapper = styled.div`
   }
 
   ${media.tablet} {
+    padding: 3.906vw 0vw 8.906vw 3.906vw;
+    gap:32px;
   }
 
   ${media.mobile} {
