@@ -26,21 +26,21 @@ const SwissList = () => {
         toggleActions: "play pause play reset",
      }
    })
-   tl.set('.bodyDiv',{xPercent:400})
+  //  tl.set('.bodyDiv',{xPercent:400})
 
    .from(".lineLoader", {
      scaleX: 0,
-     duration: 0.4,
+     duration: 0.5,
      transformOrigin: "left center",
      ease: "none",
-     stagger: 0.4,
+     stagger: 0.5,
      scrollTrigger: {
        trigger: ".lineLoader",
      },
    })
     .to(
       ".bodyDiv",{xPercent: 0, duration: 0.4, stagger: 0.4,
-      },"-=.2")
+      },"<+=.2")
   .fromTo(
      ".textBody",
      {
@@ -48,8 +48,8 @@ const SwissList = () => {
      },
      {
        opacity: 1,
-       duration: 2,
-       stagger: 0.4,
+       duration: 1,
+       stagger: 0.5,
      },
      '<'
    )
@@ -72,7 +72,12 @@ const SwissList = () => {
   })
   return (
     <Wrapper className="swissWrapper">
+      <SectionOne >
+      <HeaderStickyDiv >  
       <Header>{data.header}</Header>
+      </HeaderStickyDiv>
+      </SectionOne>
+      
       <BodySectionWrapper>{RunBodyData}</BodySectionWrapper>
     </Wrapper>
   )
@@ -162,11 +167,24 @@ const Header = styled.h3`
   color: black;
 
 `
+const HeaderStickyDiv = styled.div`
+position: sticky;
+top: 20px;
+display: flex;
+height: fit-content;
+`
+const SectionOne = styled.div`
+position: relative;
+top: 0px;
+max-height: 600px;
+
+
+`
 const Wrapper = styled.div`
    display: flex;
    flex-direction: row;
    justify-content: center;
-   overflow: hidden;
+
    padding: 3.472vw 6.389vw 3.472vw 9.167vw;
    gap: 3.472vw;
   ${media.fullWidth} {

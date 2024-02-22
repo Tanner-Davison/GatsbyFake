@@ -27,8 +27,8 @@ const StickyScroll = () => {
             gsap.to(item, {
               opacity: 1,
               xPercent: 0,
-              duration: 1,
-              ease: 'expoScale',
+              duration: .8,
+              ease: 'power.3.inOut',
              
             })
           },
