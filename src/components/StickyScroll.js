@@ -7,12 +7,14 @@ import CheckCircle from "../images/CheckCircle.webp"
 import {data} from "./content/StickyScrollContent"
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
+
 gsap.registerPlugin(ScrollTrigger)
 
 const StickyScroll = () => {
   const listItems = data[1].list
 
   useEffect(() => {
+   
     const items = gsap.utils.toArray(".listItem")
     const disapearItems = items.slice(3)
     const tl = gsap.timeline()
@@ -58,7 +60,7 @@ const StickyScroll = () => {
   }, [])
   const runList = listItems.map((listItem, index) => {
     return (
-      <ListItemDiv className={"listItem"} $index={index}>
+      <ListItemDiv className={"listItem"} id="smooth-content" $index={index}>
         <ListHeadline>
           <StyledCheck src={CheckCircle} />
           {listItem.headline}

@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 const SwissList = () => {
   const {bodyData} = data
-  console.log(bodyData)
 
  useEffect(() => {
   const triggerItem = document.querySelector('.swissWrapper')
@@ -24,20 +23,28 @@ const SwissList = () => {
         toggleActions: "play pause play reset",
      }
    })
-
-   // Animation for the loader with ScrollTrigger
+   tl.set('.bodyDiv',{
+   xPercent:400
+   })
    tl.from(".lineLoader", {
      scaleX: 0,
-     duration: 0.8,
+     duration: 0.4,
      transformOrigin: "left center",
      ease: "none",
-     stagger: 0.8,
+     stagger: 0.4,
      scrollTrigger: {
        trigger: ".lineLoader",
      },
    })
-
-   // Animation for the body with ScrollTrigger
+    tl.to(
+      ".bodyDiv",
+      {
+        xPercent: 0,
+        duration: 0.4,
+        stagger: 0.4,
+      },
+      "-=.2"
+    )
    tl.fromTo(
      ".textBody",
      {
@@ -46,12 +53,11 @@ const SwissList = () => {
      {
        opacity: 1,
        duration: 2,
-       stagger: 0.8,
-     
-     }
+       stagger: 0.4,
+     },
+     '<'
    )
-
-   // Trigger the timeline to play when the trigger element comes into view
+  
   //  ScrollTrigger.create({
   //    trigger: triggerItem, 
   //    onEnter: () => tl.play(),
@@ -62,7 +68,7 @@ const SwissList = () => {
  }, [])
   const RunBodyData = bodyData.map((bodyItem, index) => {
     return (
-      <BodyDiv>
+      <BodyDiv className='bodyDiv'>
         <LoadingLine className="lineLoader" />
         <BodyP className="textBody">{bodyItem.body} </BodyP>
       </BodyDiv>
@@ -78,14 +84,26 @@ const SwissList = () => {
 
 export default SwissList
 const LoadingLine = styled.span`
+  position: relative;
+  display: inline-block;
+  background-color: #191d1e;
   width: 100%;
   max-width: 55.556vw;
   height: 0.139vw;
   margin: 0 0 0.694vw 0;
   border-radius: 3.472vw;
-  position: relative;
-  display: inline-block;
-  background-color: #191d1e;
+  ${media.fullWidth} {
+    max-width: 800px;
+    height: 2px;
+    margin: 0 0 10px 0;
+    border-radius: 50px;
+  }
+
+  ${media.tablet} {
+  }
+
+  ${media.mobile} {
+  }
 `
 const BodyP = styled.p`
   ${text.bodyM}
@@ -99,11 +117,30 @@ const BodyDiv = styled.div`
   flex-direction: column;
   width: 18.194vw;
   padding: 0.972vw 3.194vw 1.944vw 0vw;
+  ${media.fullWidth} {
+    width: 262px;
+    padding: 14px 46px 28px 0px;
+  }
+
+  ${media.tablet} {
+  }
+
+  ${media.mobile} {
+  }
 `
 const BodySectionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 64.278vw;
+  ${media.fullWidth} {
+    width: 786px;
+  }
+
+  ${media.tablet} {
+  }
+
+  ${media.mobile} {
+  }
 `
 const Header = styled.h3`
   ${text.h3}
@@ -112,8 +149,19 @@ const Header = styled.h3`
 `
 const Wrapper = styled.div`
   display: flex;
+  justify-content: center;
   padding: 3.472vw 6.389vw 3.472vw 9.167vw;
   gap: 3.472vw;
 
   box-sizing: border-box;
+  ${media.fullWidth} {
+    padding: 50px 92px 50px 132px;
+    gap: 50px;
+  }
+
+  ${media.tablet} {
+  }
+
+  ${media.mobile} {
+  }
 `
