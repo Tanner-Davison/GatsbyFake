@@ -350,9 +350,20 @@ const Background = styled.div`
   background-color: ${colors.black};
   width: 18.889vw;
   height: 125%;
-  padding: 15px 0px;
-  border-radius: 11px;
+  padding: 1.042vw 0vw;
+  border-radius: 0.764vw;
   z-index: 2;
+  ${media.fullWidth} {
+    width: 272px;
+    padding: 15px 0px;
+    border-radius: 11px;
+  }
+
+  ${media.tablet} {
+  }
+
+  ${media.mobile} {
+  }
 `
 const Controller = styled.div`
   position: relative;

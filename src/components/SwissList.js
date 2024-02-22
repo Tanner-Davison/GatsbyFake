@@ -115,6 +115,7 @@ const BodyDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow:hidden;
   width: 18.194vw;
   padding: 0.972vw 3.194vw 1.944vw 0vw;
   ${media.fullWidth} {
