@@ -170,5 +170,6 @@ const Wrapper = styled.div`
   }
 
   ${media.mobile} {
+  padding:40px 26px
   }
 `
