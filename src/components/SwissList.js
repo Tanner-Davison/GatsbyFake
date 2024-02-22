@@ -7,26 +7,28 @@ import {data} from "./content/SwissListContent"
 import gsap from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
 import {ScrollSmoother} from "gsap/ScrollSmoother"
+import getMedia from 'utils/getMedia' ;
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 const SwissList = () => {
   const {bodyData} = data
 
  useEffect(() => {
+
   const triggerItem = document.querySelector('.swissWrapper')
    const tl = gsap.timeline({
      paused: true, 
+
      scrollTrigger: {
         trigger: triggerItem,
-        start: "top top",
-        end: '+=1000',
+        start: getMedia('top top', 'top top', 'top 30%', 'top 50%'),
+        end: 'bottom+=800 -400',
         toggleActions: "play pause play reset",
      }
    })
-   tl.set('.bodyDiv',{
-   xPercent:400
-   })
-   tl.from(".lineLoader", {
+   tl.set('.bodyDiv',{xPercent:400})
+
+   .from(".lineLoader", {
      scaleX: 0,
      duration: 0.4,
      transformOrigin: "left center",
@@ -36,16 +38,10 @@ const SwissList = () => {
        trigger: ".lineLoader",
      },
    })
-    tl.to(
-      ".bodyDiv",
-      {
-        xPercent: 0,
-        duration: 0.4,
-        stagger: 0.4,
-      },
-      "-=.2"
-    )
-   tl.fromTo(
+    .to(
+      ".bodyDiv",{xPercent: 0, duration: 0.4, stagger: 0.4,
+      },"-=.2")
+  .fromTo(
      ".textBody",
      {
        opacity: 0,
@@ -100,16 +96,26 @@ const LoadingLine = styled.span`
   }
 
   ${media.tablet} {
-    height: 0.139vw;
+    height: 0.12vw;
   }
 
   ${media.mobile} {
+    height: 0.267vw;
   }
 `
 const BodyP = styled.p`
   ${text.bodyM}
   margin:unset;
   color: black;
+
+  
+  ${media.tablet} {
+   ${text.bodyS}
+  }
+  
+  ${media.mobile} {
+  ${text.bodyS}
+  }
 `
 const BodyDiv = styled.div`
   display: flex;
@@ -130,6 +136,8 @@ const BodyDiv = styled.div`
   }
 
   ${media.mobile} {
+    width:46vw;
+    padding:2.133vw 4.8vw 5.333vw 0vw;
   }
 `
 const BodySectionWrapper = styled.div`
@@ -145,20 +153,22 @@ const BodySectionWrapper = styled.div`
   }
 
   ${media.mobile} {
+    width:93.267vw;
   }
 `
 const Header = styled.h3`
   ${text.h3}
   margin:unset;
   color: black;
+
 `
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 3.472vw 6.389vw 3.472vw 9.167vw;
-  gap: 3.472vw;
-
-  box-sizing: border-box;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   overflow: hidden;
+   padding: 3.472vw 6.389vw 3.472vw 9.167vw;
+   gap: 3.472vw;
   ${media.fullWidth} {
     padding: 50px 92px 50px 132px;
     gap: 50px;
@@ -168,8 +178,11 @@ const Wrapper = styled.div`
     padding: 3.906vw 0vw 8.906vw 3.906vw;
     gap:32px;
   }
-
   ${media.mobile} {
-  padding:40px 26px
+    flex-direction:column;
+    max-width: 100%;
+    padding:10.667vw 6.933vw;
+    gap:6.4vw;
+    flex-wrap: nowrap;
   }
 `

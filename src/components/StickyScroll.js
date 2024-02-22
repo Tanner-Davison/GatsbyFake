@@ -7,42 +7,38 @@ import CheckCircle from "../images/CheckCircle.webp"
 import {data} from "./content/StickyScrollContent"
 import gsap from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger"
-
+import getMedia from 'utils/getMedia' ;
 gsap.registerPlugin(ScrollTrigger)
 
 const StickyScroll = () => {
   const listItems = data[1].list
 
   useEffect(() => {
-   
     const items = gsap.utils.toArray(".listItem")
     const disapearItems = items.slice(3)
     const tl = gsap.timeline()
-
-    gsap.set(disapearItems, {xPercent: 200})
-
+    gsap.set(disapearItems, {opacity:0, xPercent: 200})
     disapearItems.forEach((item, index) => {
       gsap.to(item, {
-        opacity: 1,
-        xPercent: 0,
-        duration: 0.5,
         scrollTrigger: {
           trigger: item,
-          start: "25%",
+          start: getMedia("top top", "top top", "top 40%", "top 50%"),      
           onEnter: () => {
             gsap.to(item, {
               opacity: 1,
               xPercent: 0,
-              duration: 0.5,
+              duration: 1,
+              ease: 'expoScale',
+             
             })
           },
-          onEnterBack: () => {
+          onLeaveBack: () => {
             gsap.to(item, {
               xPercent: 200,
-              duration: 1,
+              duration: .5,
+              delay:.5,
             })
           },
-          // toggleActions: `play reverse none reset`,
         },
         stagger: 0.2 * index,
       })
@@ -203,8 +199,9 @@ const StableContentDiv = styled.div`
 
   ${media.mobile} {
     width: 100%;
-    height: 100%;
+    height:23%;
     gap: 1.869vw;
+    position: relative;
   }
 `
 const ProgressBarSlide = styled.div`
@@ -236,6 +233,9 @@ const ProgressBar = styled.div`
     left: -2px;
     height: 418px;
   }
+  ${media.mobile}{
+    
+  }
 `
 const StableBodyDiv = styled.div`
   position: relative;
@@ -255,7 +255,7 @@ const StableBodyDiv = styled.div`
 
   ${media.mobile} {
     width: 87.85vw;
-    height: 100%;
+    height: 15%;
   }
 `
 const AllWrapperDiv = styled.div`
