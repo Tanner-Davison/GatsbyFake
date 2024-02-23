@@ -21,7 +21,7 @@ const SwissList = () => {
 
      scrollTrigger: {
         trigger: triggerItem,
-        start: getMedia('top top', 'top top', 'top 30%', 'top 50%'),
+        start: getMedia('top top', 'top top', '50% 80%', 'top 50%'),
         end: 'bottom+=800 -400',
         toggleActions: "play pause play reset",
      }

@@ -17,7 +17,7 @@ const StickyScroll = () => {
     const items = gsap.utils.toArray(".listItem")
     const disapearItems = items.slice(3)
     const tl = gsap.timeline()
-    gsap.set(disapearItems, {opacity:0, xPercent: 200})
+    gsap.set(disapearItems, {opacity:0, xPercent: 0})
     disapearItems.forEach((item, index) => {
       gsap.to(item, {
         scrollTrigger: {
@@ -29,12 +29,13 @@ const StickyScroll = () => {
               xPercent: 0,
               duration: .8,
               ease: 'power.3.inOut',
-             
+            
             })
           },
           onLeaveBack: () => {
             gsap.to(item, {
-              xPercent: 200,
+              xPercent: 0,
+              opacity:0,
               duration: .5,
               delay:.5,
             })
@@ -50,7 +51,6 @@ const StickyScroll = () => {
         trigger: ".wrapper",
         start: "top top",
         scrub: true,
-        // markers: true
       },
     })
   }, [])
@@ -115,7 +115,7 @@ const StyledCheck = styled.img`
   ${media.tablet} {
     width: 4.297vw;
     height: 4.297vw;
-    left: -6.445vw;
+    left:-5.445vw;
   }
 
   ${media.mobile} {
@@ -277,5 +277,8 @@ const Wrapper = styled.div`
   padding: 5.556vw 2.778vw 5.556vw 7.431vw;
   ${media.fullWidth} {
     padding: 80px 40px 80px 107px;
+  }
+  ${media.mobile}{
+    margin-bottom:13.333vw;
   }
 `
