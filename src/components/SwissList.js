@@ -20,7 +20,7 @@ const SwissList = () => {
        paused: true, 
        scrollTrigger: {
           trigger: '.swissWrapper',
-          start: 'top 50%',
+          start: 'top 90%',
           end: 'bottom+=300',
           toggleActions: "play pause play reset",
        }
