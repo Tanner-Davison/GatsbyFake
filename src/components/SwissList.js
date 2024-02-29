@@ -6,61 +6,50 @@ import text from "styles/text"
 import {data} from "./content/SwissListContent"
 import gsap from "gsap"
 import {ScrollTrigger} from "gsap/ScrollTrigger"
-import {ScrollSmoother} from "gsap/ScrollSmoother"
 import getMedia from 'utils/getMedia' ;
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+gsap.registerPlugin(ScrollTrigger)
 
 const SwissList = () => {
   const {bodyData} = data
 
  useEffect(() => {
-
-  const triggerItem = document.querySelector('.swissWrapper')
-   const tl = gsap.timeline({
-     paused: true, 
-
-     scrollTrigger: {
-        trigger: triggerItem,
-        start: getMedia('top top', 'top top', '50% 80%', 'top 50%'),
-        end: 'bottom+=800 -400',
-        toggleActions: "play pause play reset",
-     }
-   })
-  //  tl.set('.bodyDiv',{xPercent:400})
-
-   .from(".lineLoader", {
-     scaleX: 0,
-     duration: 0.5,
-     transformOrigin: "left center",
-     ease: "none",
-     stagger: 0.5,
-     scrollTrigger: {
-       trigger: ".lineLoader",
-     },
-   })
-    .to(
-      ".bodyDiv",{xPercent: 0, duration: 0.4, stagger: 0.4,
-      },"<+=.2")
-  .fromTo(
-     ".textBody",
-     {
-       opacity: 0,
-     },
-     {
-       opacity: 1,
-       duration: 1,
-       stagger: 0.5,
-     },
-     '<'
-   )
+  setTimeout(()=> {
+    const triggerItem = document.querySelector('.swissWrapper');
+    console.log('triggerItem :',triggerItem)
+     const tl = gsap.timeline({
+       paused: true, 
+       scrollTrigger: {
+          trigger: '.swissWrapper',
+          start: 'top 50%',
+          end: 'bottom+=300',
+          toggleActions: "play pause play reset",
+       }
+     })
   
-  //  ScrollTrigger.create({
-  //    trigger: triggerItem, 
-  //    onEnter: () => tl.play(),
-  //    onLeave: () => tl.pause(),
-  //    onEnterBack: () => tl.play(),
-  //    onLeaveBack: () => tl.pause(),
-  //  })
+  
+     .from(".lineLoader", {
+       scaleX: 0,
+       duration: 0.5,
+       transformOrigin: "left center",
+       ease: "none",
+       stagger: 0.5,
+     })
+      .to(
+        ".bodyDiv",{xPercent: 0, duration: 0.4, stagger: 0.4,
+        },"<+=.2")
+    .fromTo(
+       ".textBody",
+       {
+         opacity: 0,
+       },
+       {
+         opacity: 1,
+         duration: 1,
+         stagger: 0.5,
+       },
+       '<'
+     )
+  })
  }, [])
   const RunBodyData = bodyData.map((bodyItem, index) => {
     return (
@@ -71,6 +60,7 @@ const SwissList = () => {
     )
   })
   return (
+
     <Wrapper className="swissWrapper">
       <SectionOne >
       <HeaderStickyDiv >  
@@ -80,32 +70,33 @@ const SwissList = () => {
       
       <BodySectionWrapper>{RunBodyData}</BodySectionWrapper>
     </Wrapper>
+
   )
 }
 
 export default SwissList
-const LoadingLine = styled.span`
+const LoadingLine = styled.div`
   position: relative;
   display: inline-block;
   background-color: #191d1e;
   width: 100%;
   max-width: 55.556vw;
-  height: 0.139vw !important;
+  height: 0.05em;
   margin: 0 0 0.694vw 0;
   border-radius: 3.472vw;
   ${media.fullWidth} {
     max-width: 800px;
-    height: 2px;
+    height: .06em;
     margin: 0 0 10px 0;
     border-radius: 50px;
   }
 
   ${media.tablet} {
-    height: 0.12vw;
+    height: 0.09em;
   }
 
   ${media.mobile} {
-    height: 0.267vw;
+    height: 0.05em;
   }
 `
 const BodyP = styled.p`
@@ -128,16 +119,16 @@ const BodyDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   overflow:hidden;
-  width: 18.194vw;
-  padding: 0.972vw 3.194vw 1.944vw 0vw;
+  width: 18.2vw;
+  padding:  0.972vw 3.194vw 1.944vw 0vw;
   ${media.fullWidth} {
     width: 262px;
     padding: 14px 46px 28px 0px;
   }
 
   ${media.tablet} {
-  width:21.875vw;
-    padding: 12px 12px 24px 0px;
+  width:20.895vw;
+    padding: 1.679vw 2.516vw 3.357vw 0vw;
   }
 
   ${media.mobile} {
@@ -148,7 +139,7 @@ const BodyDiv = styled.div`
 const BodySectionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 64.278vw;
+  width: 64.288vw;
   ${media.fullWidth} {
     width: 786px;
   }
@@ -169,22 +160,31 @@ const Header = styled.h3`
 `
 const HeaderStickyDiv = styled.div`
 position: sticky;
-top: 20px;
+top: 1.389vw;
 display: flex;
 height: fit-content;
+${media.fullWidth} {
+  top: 20px;
+}
+
+${media.tablet} {
+  top: 2.398vw;
+}
+
+${media.mobile} {
+  top: 5.333vw; 
+}
 `
 const SectionOne = styled.div`
 position: relative;
 top: 0px;
-max-height: 600px;
-
 
 `
 const Wrapper = styled.div`
+position: relative;
    display: flex;
    flex-direction: row;
    justify-content: center;
-
    padding: 3.472vw 6.389vw 3.472vw 9.167vw;
    gap: 3.472vw;
   ${media.fullWidth} {
@@ -193,14 +193,14 @@ const Wrapper = styled.div`
   }
 
   ${media.tablet} {
-    padding: 3.906vw 0vw 8.906vw 3.906vw;
-    gap:32px;
+    padding: 4.796vw 3.118vw 4.796vw 4.796vw;
+    gap:3.837vw;
   }
   ${media.mobile} {
     flex-direction:column;
-    max-width: 100%;
-    padding:10.667vw 6.933vw;
+    padding:0vw 6.933vw;
     gap:6.4vw;
     flex-wrap: nowrap;
+    margin-top:5.333vw;
   }
 `

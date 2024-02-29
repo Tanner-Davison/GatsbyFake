@@ -1,13 +1,13 @@
 import React, {useEffect} from "react"
 import styled from "styled-components"
 import media from "styles/media"
+import ScrollTrigger from "gsap/ScrollTrigger"
 import colors from "styles/colors"
 import text from "styles/text"
 import CheckCircle from "../images/CheckCircle.webp"
 import {data} from "./content/StickyScrollContent"
 import gsap from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-import getMedia from 'utils/getMedia' ;
+import getMedia from "utils/getMedia"
 gsap.registerPlugin(ScrollTrigger)
 
 const StickyScroll = () => {
@@ -17,27 +17,26 @@ const StickyScroll = () => {
     const items = gsap.utils.toArray(".listItem")
     const disapearItems = items.slice(3)
     const tl = gsap.timeline()
-    gsap.set(disapearItems, {opacity:0, xPercent: 0})
+    gsap.set(disapearItems, {opacity: 0, xPercent: 0})
     disapearItems.forEach((item, index) => {
       gsap.to(item, {
         scrollTrigger: {
           trigger: item,
-          start: getMedia("top top", "top top", "top 40%", "top 50%"),      
+          start: getMedia("top top", "top top", "top 40%", "top top"),
           onEnter: () => {
             gsap.to(item, {
               opacity: 1,
               xPercent: 0,
-              duration: .8,
-              ease: 'power.3.inOut',
-            
+              duration: 0.8,
+              ease: "power.3.inOut",
             })
           },
           onLeaveBack: () => {
             gsap.to(item, {
               xPercent: 0,
-              opacity:0,
-              duration: .5,
-              delay:.5,
+              opacity: 0,
+              duration: 0.5,
+              delay: 0.5,
             })
           },
         },
@@ -48,7 +47,7 @@ const StickyScroll = () => {
     gsap.to(".invisible", {
       height: "70%",
       scrollTrigger: {
-        trigger: ".wrapper",
+        trigger: ".stickyWrapper",
         start: "top top",
         scrub: true,
       },
@@ -67,7 +66,7 @@ const StickyScroll = () => {
   })
   return (
     <Wrapper>
-      <AllWrapperDiv className={"wrapper"}>
+      <AllWrapperDiv className={"stickyWrapper"}>
         <StableBodyDiv>
           <StableContentDiv>
             <ProgressBar>
@@ -91,7 +90,7 @@ const StickyScroll = () => {
 }
 
 export default StickyScroll
-const InlineBody = styled.span`
+const InlineBody = styled.p`
   ${text.bodyM}
   margin:unset;
 `
@@ -115,7 +114,7 @@ const StyledCheck = styled.img`
   ${media.tablet} {
     width: 4.297vw;
     height: 4.297vw;
-    left:-5.445vw;
+    left: -5.445vw;
   }
 
   ${media.mobile} {
@@ -163,7 +162,7 @@ const LongListDiv = styled.div`
   ${media.mobile} {
     width: 100%;
     height: 100%;
-    padding: 4.206vw 6.075vw 4.206vw 9.346vw;
+    padding: 4.206vw 6.075vw 21.206vw 9.346vw;
   }
 `
 const StableBody = styled.p`
@@ -199,42 +198,56 @@ const StableContentDiv = styled.div`
 
   ${media.mobile} {
     width: 100%;
-    height:23%;
+    height: 23%;
     gap: 1.869vw;
     position: relative;
   }
 `
 const ProgressBarSlide = styled.div`
-  width: 0.208vw;
+  position: relative;
+  left:-0.069vw;
+  width: 0.255vw;
   height: 30%;
   background-color: #471147;
+  border-radius: 4.514vw;
 
   ${media.fullWidth} {
     width: 3px;
+    left: -.5px;
+  }
+  ${media.tablet} {
+    width: 0.36vw;
+    left: -0.12vw;
+  }
+  ${media.mobile} {
+    display: none;
   }
 `
 const InvisibleProgress = styled.div`
   height: 0%;
 `
 const ProgressBar = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   position: absolute;
-  background-color: ${colors.grey200};
+  background-color: ${colors.primaryPurple};
   top: 0vw;
   left: -0.139vw;
-  width: 0.139vw;
+  width: 0.100vw;
   height: 26.944vw;
 
   ${media.fullWidth} {
-    top: 0px;
-    width: 2px;
+    width: 1px;
     left: -2px;
     height: 418px;
   }
-  ${media.mobile}{
-    
+  ${media.tablet} {
+    left: -2x;
+    width: 0.24vw;
+    height: 28.523vw;
+  }
+  ${media.mobile} {
+    display: none;
   }
 `
 const StableBodyDiv = styled.div`
@@ -259,7 +272,6 @@ const StableBodyDiv = styled.div`
   }
 `
 const AllWrapperDiv = styled.div`
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -270,15 +282,14 @@ const AllWrapperDiv = styled.div`
   }
 `
 const Wrapper = styled.div`
-  position: relative;
   display: flex;
-
   justify-content: center;
   padding: 5.556vw 2.778vw 5.556vw 7.431vw;
   ${media.fullWidth} {
     padding: 80px 40px 80px 107px;
   }
-  ${media.mobile}{
-    margin-bottom:13.333vw;
+  ${media.mobile} {
+    margin-bottom: 13.333vw;
+    padding: 21.333vw 10.667vw 0.333vw 28.533vw;
   }
 `
