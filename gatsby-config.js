@@ -7,7 +7,7 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-console.log('Hello');
+
 
 module.exports = {
   siteMetadata: {
