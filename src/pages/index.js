@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 
-
+console.log("submit")
 const IndexPage = () => (
   <Layout>
     
